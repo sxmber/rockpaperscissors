@@ -12,7 +12,7 @@ const getComputerChoice = () => {
     }
     
 }
-const computerSelection = getComputerChoice();
+
 
 const playRound = (playerSelection, computerSelection) => {
     playerSelection = playerSelection.toLowerCase();
@@ -40,26 +40,26 @@ const playRound = (playerSelection, computerSelection) => {
 
 const game = () => {
     for (i=0; i < 5; i++){
+        const computerSelection = getComputerChoice();
         const playerSelection = prompt("Do you pick rock, paper or scissors?");
         let result = playRound(playerSelection, computerSelection);
-        console.log(result)
         if (result == "Player wins"){
             playerPoints++;
-            console.log("you won")
+            console.log(`You chose ${playerSelection} and computer chose ${computerSelection}, You won!`)
         } else if (result == "Computer wins"){
             computerPoints++;
-            console.log("Computer won")
+            console.log(`You chose ${playerSelection} and computer chose ${computerSelection}, You lost...`)
         } else if (result == "Its a draw"){
-            console.log("Its a draw, play again")
+            console.log(`You chose ${playerSelection} and computer chose ${computerSelection}, Its a draw!`)
         }
 
     }
-    // if(playerPoints > computerPoints) {
-    //     return "Player won the game"
-    // } else if (playerPoints < computerPoints){
-    //     return "Computer won the game"
-    // } else {
-    //     return "Its a draw"
-    // }
+    if(playerPoints > computerPoints) {
+        console.log( "Player won the game")
+    } else if (playerPoints < computerPoints){
+        console.log("Computer won the game")
+    } else {
+        console.log("Game ended. Its a draw")
+    }
 }
 game();
