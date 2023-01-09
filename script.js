@@ -5,61 +5,77 @@ const getComputerChoice = () => {
     let randomNumber = Math.floor(Math.random() * 3)
     if (randomNumber == 0) {
         return "rock";
-    } else if (randomNumber == 1){
+    } else if (randomNumber == 1) {
         return "paper";
-    } else if (randomNumber == 2){
+    } else if (randomNumber == 2) {
         return "scissors"
     }
-    
+
 }
 
-
 const playRound = (playerSelection, computerSelection) => {
-    playerSelection = playerSelection.toLowerCase();
-    if (playerSelection == "rock" && computerSelection == "rock"){
-        return "Its a draw";
-    } else if (playerSelection == "rock" && computerSelection == "paper"){
-        return "Computer wins"
-    } else if (playerSelection == "rock" && computerSelection == "scissors"){
-        return "Player wins"
-    } else if (playerSelection == "paper" && computerSelection == "rock"){
-        return "Player wins"
-    } else if (playerSelection == "paper" && computerSelection == "paper"){
+    if (playerSelection == "rock" && computerSelection == "rock") {
         return "Its a draw"
-    } else if (playerSelection == "paper" && computerSelection == "scissors"){
+    } else if (playerSelection == "rock" && computerSelection == "paper") {
         return "Computer wins"
-    } else if (playerSelection == "scissors" && computerSelection == "rock"){
-        return "Computer wins"
-    } else if (playerSelection == "scissors" && computerSelection == "paper"){
+    } else if (playerSelection == "rock" && computerSelection == "scissors") {
         return "Player wins"
-    } else if (playerSelection == "scissors" && computerSelection == "scissors"){
+    } else if (playerSelection == "paper" && computerSelection == "rock") {
+        return "Player wins"
+    } else if (playerSelection == "paper" && computerSelection == "paper") {
+        return "Its a draw"
+    } else if (playerSelection == "paper" && computerSelection == "scissors") {
+        return "Computer wins"
+    } else if (playerSelection == "scissors" && computerSelection == "rock") {
+        return "Computer wins"
+    } else if (playerSelection == "scissors" && computerSelection == "paper") {
+        return "Player wins"
+    } else if (playerSelection == "scissors" && computerSelection == "scissors") {
         return "Its a draw"
     }
+
 
 }
 
 const game = () => {
-    for (i=0; i < 5; i++){
-        const computerSelection = getComputerChoice();
-        const playerSelection = prompt("Do you pick rock, paper or scissors?");
-        let result = playRound(playerSelection, computerSelection);
-        if (result == "Player wins"){
-            playerPoints++;
-            console.log(`You chose ${playerSelection} and computer chose ${computerSelection}, You won!`)
-        } else if (result == "Computer wins"){
-            computerPoints++;
-            console.log(`You chose ${playerSelection} and computer chose ${computerSelection}, You lost...`)
-        } else if (result == "Its a draw"){
-            console.log(`You chose ${playerSelection} and computer chose ${computerSelection}, Its a draw!`)
-        }
+    const pPoints = document.querySelector('#pPoints');
+    const cPoints = document.querySelector('#cPoints');
+    const options = document.querySelectorAll('.options')
+    const p = document.querySelector('p');
+    const reset = document.querySelector('#reset');
+    options.forEach((option) => {
+        option.addEventListener('click', function (e) {
+            let comp = getComputerChoice();
+            result = playRound(e.target.id, comp);
+            if (result == "Player wins") {
+                playerPoints++;
+                pPoints.textContent = playerPoints.toString();
+                p.textContent = `You chose ${e.target.id} and computer chose ${comp}, You won!`;
+            } else if (result == "Computer wins") {
+                computerPoints++;
+                cPoints.textContent = computerPoints.toString();
+                p.textContent = `You chose ${e.target.id} and computer chose ${comp}, You lost...`;
+            } else if (result == "Its a draw") {
+                p.textContent = `You chose ${e.target.id} and computer chose ${comp}, Its a draw!`;
+            }
+            if (playerPoints == 5) {
+                p.textContent = "You win!";
+            }
+            else if (computerPoints == 5) {
+                p.textContent = "You lost!";
+            }
 
-    }
-    if(playerPoints > computerPoints) {
-        console.log( "Player won the game")
-    } else if (playerPoints < computerPoints){
-        console.log("Computer won the game")
-    } else {
-        console.log("Game ended. Its a draw")
-    }
+        })
+    })
+    reset.addEventListener('click', () => {
+        playerPoints = 0;
+        pPoints.textContent = 0;
+        computerPoints = 0;
+        cPoints.textContent = 0;
+        p.textContent = "";
+    })
+
 }
+
+
 game();
