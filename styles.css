@@ -1,0 +1,32 @@
+.container {
+    height: 200px;
+    width: 500px;
+    margin: auto;
+}
+
+.container>* {
+    margin: auto;
+    color: white;
+}
+
+html {
+    background-image: url(assets/dungeon.gif);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'MedievalSharp', cursive;
+
+}
+
+#player,
+#enemy {
+    width: 175px;
+    height: 175px
+}
+
+.battlefield {
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 200px;
+}

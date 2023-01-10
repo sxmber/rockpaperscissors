@@ -1,6 +1,13 @@
 let playerPoints = 0;
 let computerPoints = 0;
 
+const pPoints = document.querySelector('#pPoints');
+const cPoints = document.querySelector('#cPoints');
+const options = document.querySelectorAll('.options')
+const p = document.querySelector('p');
+const p1 = document.querySelector('p1')
+const reset = document.querySelector('#reset');
+
 const getComputerChoice = () => {
     let randomNumber = Math.floor(Math.random() * 3)
     if (randomNumber == 0) {
@@ -38,11 +45,6 @@ const playRound = (playerSelection, computerSelection) => {
 }
 
 const game = () => {
-    const pPoints = document.querySelector('#pPoints');
-    const cPoints = document.querySelector('#cPoints');
-    const options = document.querySelectorAll('.options')
-    const p = document.querySelector('p');
-    const reset = document.querySelector('#reset');
     options.forEach((option) => {
         option.addEventListener('click', function (e) {
             let comp = getComputerChoice();
@@ -50,32 +52,40 @@ const game = () => {
             if (result == "Player wins") {
                 playerPoints++;
                 pPoints.textContent = playerPoints.toString();
-                p.textContent = `You chose ${e.target.id} and computer chose ${comp}, You won!`;
+                p.textContent = `You chose ${e.target.id} and computer chose ${comp}`;
+                p1.textContent = "You won!";
             } else if (result == "Computer wins") {
                 computerPoints++;
                 cPoints.textContent = computerPoints.toString();
-                p.textContent = `You chose ${e.target.id} and computer chose ${comp}, You lost...`;
+                p.textContent = `You chose ${e.target.id} and computer chose ${comp}`;
+                p1.textContent = "You lost...";
             } else if (result == "Its a draw") {
-                p.textContent = `You chose ${e.target.id} and computer chose ${comp}, Its a draw!`;
+                p.textContent = `You chose ${e.target.id} and computer chose ${comp}`;
+                p1.textContent = "Its a draw!";
             }
             if (playerPoints == 5) {
-                p.textContent = "You win!";
+                p1.textContent = "You win the game!";
+                document.getElementsByClassName("options").disabled = true;
             }
             else if (computerPoints == 5) {
-                p.textContent = "You lost!";
+                p1.textContent = "You lost the game :(";
+                document.getElementsByClassName("options").disabled = true;
             }
 
         })
     })
-    reset.addEventListener('click', () => {
-        playerPoints = 0;
-        pPoints.textContent = 0;
-        computerPoints = 0;
-        cPoints.textContent = 0;
-        p.textContent = "";
-    })
+    reset.addEventListener('click', resetGame)
+
+}
+function resetGame() {
+    playerPoints = 0;
+    pPoints.textContent = 0;
+    computerPoints = 0;
+    cPoints.textContent = 0;
+    // p.textContent = "";
 
 }
 
-
 game();
+//i want it to display you won or lost, then on 
+//next button press it restarts the game

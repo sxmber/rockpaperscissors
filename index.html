@@ -7,17 +7,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="script.js" defer></script>
-
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <h2 style="margin: 3px">First to 5 wins!</h2>
-    <button class="options" id="paper">Paper</button>
-    <button class="options" id="rock">Rock</button>
-    <button class="options" id="scissors">Scissors</button>
-    <div class="points">Your points: <span id="pPoints">0</span><br>Computer points: <span id="cPoints">0</span></div>
-    <p></p>
-    <button id="reset">Reset game</button>
+    <div class="container">
+        <h2 style="margin: 3px">A skeleton king stops you in your tracks!</h2>
+        <button class="options" id="paper">Magic</button>
+        <button class="options" id="rock">Melee</button>
+        <button class="options" id="scissors">Ranged</button>
+        <div class="points">Your points: <span id="pPoints">0</span><br>Computer points: <span id="cPoints">0</span>
+        </div>
+        <p></p>
+        <p1></p1>
+        <br>
+        <button id="reset">Reset game</button>
+
+
+    </div>
+    <div class="battlefield">
+        <img id="player" src="/assets/littlemage.gif" alt="">
+        <img id="enemy" src="/assets/spinning_skull.gif" alt="">
+    </div>
 </body>
 
 </html>
